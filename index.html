@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colegios Solares | Medellín</title>
+  <meta name="description" content="Colegios Solares: medición de huella de carbono en el sector educativo y transición hacia energía solar fotovoltaica en Medellín, Antioquia y Colombia." />
+  <style>
+    :root {
+      --bg: #08141b;
+      --bg-soft: #0f1f29;
+      --card: rgba(255,255,255,0.08);
+      --card-strong: rgba(255,255,255,0.12);
+      --text: #eef7f0;
+      --muted: #bfd3c2;
+      --line: rgba(255,255,255,0.12);
+      --green: #4cd97b;
+      --green-deep: #168f4b;
+      --solar: #ffcc3f;
+      --solar-soft: #ffd86f;
+      --blue: #57c7ff;
+      --danger: #ff7f7f;
+      --shadow: 0 20px 50px rgba(0,0,0,0.25);
+      --radius: 24px;
+      --radius-sm: 18px;
+      --container: min(1180px, calc(100% - 2rem));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255, 204, 63, 0.18), transparent 20%),
+        radial-gradient(circle at 85% 20%, rgba(87, 199, 255, 0.14), transparent 24%),
+        linear-gradient(180deg, #061118 0%, #0a1820 35%, #08141b 100%);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .16;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    body::before {
+      top: 8%;
+      left: -80px;
+      background: var(--solar);
+      animation: floatGlow 12s ease-in-out infinite;
+    }
+
+    body::after {
+      bottom: 6%;
+      right: -120px;
+      background: var(--green);
+      animation: floatGlow 14s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatGlow {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-18px) scale(1.05); }
+    }
+
+    .container { width: var(--container); margin: 0 auto; }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(4, 13, 18, 0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      position: relative;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff3b3, var(--solar) 45%, #f4a400 100%);
+      box-shadow: 0 0 30px rgba(255, 204, 63, .35);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 217, 111, .55);
+      animation: spin 18s linear infinite;
+    }
+
+    .brand-mark::after {
+      inset: -13px;
+      animation-duration: 26s;
+      opacity: .55;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a,
+    .nav-cta,
+    button,
+    .chip,
+    .tab,
+    .sort-btn {
+      transition: transform .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: .7rem .9rem;
+      border-radius: 999px;
+      font-size: .96rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: rgba(255,255,255,.08);
+    }
+
+    .nav-cta,
+    .hero-actions a,
+    .contact button,
+    .sort-btn {
+      border: none;
+      background: linear-gradient(135deg, var(--solar), var(--solar-soft));
+      color: #172100;
+      font-weight: 800;
+      padding: .9rem 1.2rem;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255, 204, 63, .22);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+    }
+
+    .nav-cta:hover,
+    .hero-actions a:hover,
+    .contact button:hover,
+    .sort-btn:hover,
+    button:hover,
+    .tab:hover,
+    .chip:hover {
+      transform: translateY(-2px);
+    }
+
+    .ghost-btn {
+      background: rgba(255,255,255,.06) !important;
+      color: var(--text) !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(255,255,255,.12) !important;
+    }
+
+    .hero {
+      position: relative;
+      padding: 3.6rem 0 2rem;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem .8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #e9f8ce;
+      font-size: .94rem;
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(76, 217, 123, .16);
+    }
+
+    h1, h2, h3 { margin: 0; line-height: 1.05; }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 5.2rem);
+      letter-spacing: -.04em;
+      max-width: 11ch;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      max-width: 64ch;
+      margin: 1.2rem 0 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: .85rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .9rem;
+      margin-top: 1.2rem;
+    }
+
+    .metric,
+    .card,
+    .stat-card,
+    .calc-card,
+    .ranking,
+    .contact,
+    .visual-card,
+    .impact-box {
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .metric {
+      padding: 1rem;
+      min-height: 118px;
+    }
+
+    .metric small {
+      display: block;
+      color: #bfe1b8;
+      margin-bottom: .4rem;
+      letter-spacing: .03em;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+      margin-bottom: .35rem;
+    }
+
+    .metric span { color: var(--muted); font-size: .96rem; }
+
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scene {
+      position: relative;
+      width: min(100%, 560px);
+      aspect-ratio: 1 / 1;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255, 218, 107, 0.18), transparent 16%),
+        linear-gradient(180deg, rgba(30, 77, 101, .55), rgba(9, 21, 27, .96));
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .sun {
+      position: absolute;
+      top: 10%;
+      right: 12%;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff2ab, #ffd456 55%, #ffb100 100%);
+      box-shadow: 0 0 42px rgba(255, 212, 86, .48);
+      animation: sunPulse 4.5s ease-in-out infinite;
+    }
+
+    @keyframes sunPulse {
+      0%,100% { transform: scale(1); box-shadow: 0 0 42px rgba(255, 212, 86, .48); }
+      50% { transform: scale(1.06); box-shadow: 0 0 56px rgba(255, 212, 86, .6); }
+    }
+
+    .hill {
+      position: absolute;
+      bottom: -5%;
+      left: -5%;
+      width: 115%;
+      height: 32%;
+      background: linear-gradient(180deg, #1c7441, #0b3d22);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+
+    .school {
+      position: absolute;
+      left: 14%;
+      bottom: 22%;
+      width: 46%;
+      height: 30%;
+      background: linear-gradient(180deg, #f4f0df, #d7d1ba);
+      border-radius: 16px 16px 10px 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,.18);
+    }
+
+    .roof {
+      position: absolute;
+      top: -14%;
+      left: -4%;
+      width: 108%;
+      height: 26%;
+      background: linear-gradient(180deg, #d9614e, #b2483b);
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    }
+
+    .door {
+      position: absolute;
+      width: 18%;
+      height: 42%;
+      left: 42%;
+      bottom: 0;
+      background: #5c4633;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .window {
+      position: absolute;
+      width: 16%;
+      height: 24%;
+      top: 35%;
+      background: linear-gradient(180deg, #b7f0ff, #7ad0ff);
+      border: 4px solid #efe9d6;
+      border-radius: 8px;
+    }
+
+    .w1 { left: 10%; }
+    .w2 { right: 10%; }
+
+    .panels {
+      position: absolute;
+      right: 10%;
+      bottom: 18%;
+      width: 38%;
+      height: 22%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .45rem;
+      transform: skew(-18deg);
+    }
+
+    .panel {
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(180deg, #0d3a5a, #144c74 55%, #0f2b45);
+      background-size: 20px 20px, 20px 20px, auto;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: inset 0 0 20px rgba(255,255,255,.04), 0 12px 22px rgba(0,0,0,.18);
+      animation: panelGlow 3.5s ease-in-out infinite;
+    }
+
+    .panel:nth-child(2) { animation-delay: .3s; }
+    .panel:nth-child(3) { animation-delay: .6s; }
+    .panel:nth-child(4) { animation-delay: .9s; }
+    .panel:nth-child(5) { animation-delay: 1.2s; }
+    .panel:nth-child(6) { animation-delay: 1.5s; }
+
+    @keyframes panelGlow {
+      0%,100% { transform: translateY(0); filter: brightness(1); }
+      50% { transform: translateY(-4px); filter: brightness(1.08); }
+    }
+
+    .orbit-chip {
+      position: absolute;
+      padding: .8rem .95rem;
+      border-radius: 18px;
+      background: rgba(5, 15, 20, .72);
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: var(--shadow);
+      max-width: 220px;
+      backdrop-filter: blur(10px);
+    }
+
+    .orbit-chip strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: .3rem;
+    }
+
+    .chip-1 { top: 8%; left: 5%; }
+    .chip-2 { bottom: 10%; left: 5%; }
+    .chip-3 { top: 44%; right: 3%; }
+
+    section { padding: 4.5rem 0; position: relative; }
+    .section-head { max-width: 760px; margin-bottom: 2rem; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -.04em; margin-bottom: .8rem; }
+    .section-head p { color: var(--muted); line-height: 1.75; font-size: 1.04rem; }
+
+    .grid-3,
+    .grid-4,
+    .steps,
+    .impact-grid,
+    .fund-grid,
+    .contact-grid,
+    .expansion-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .impact-grid { grid-template-columns: 1.05fr .95fr; align-items: start; }
+    .fund-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .expansion-grid { grid-template-columns: .9fr 1.1fr; align-items: start; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+
+    .card,
+    .stat-card,
+    .calc-card,
+    .ranking,
+    .visual-card,
+    .impact-box,
+    .contact {
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before,
+    .stat-card::before,
+    .calc-card::before,
+    .visual-card::before,
+    .impact-box::before,
+    .contact::before {
+      content: "";
+      position: absolute;
+      inset: auto auto 100% 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--solar), var(--green), var(--blue));
+      opacity: .85;
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      font-size: 1.35rem;
+      margin-bottom: .9rem;
+    }
+
+    .card h3,
+    .stat-card h3,
+    .calc-card h3,
+    .ranking h3,
+    .visual-card h3,
+    .impact-box h3,
+    .contact h3 { margin-bottom: .65rem; font-size: 1.15rem; }
+
+    .card p,
+    .stat-card p,
+    .calc-card p,
+    .visual-card p,
+    .impact-box p,
+    .contact p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--solar), #f29b00);
+      color: #1f1a00;
+      margin-bottom: .9rem;
+      box-shadow: 0 8px 24px rgba(255, 204, 63, .28);
+    }
+
+    .tabs {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .tab {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: .75rem 1rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .tab.active {
+      color: #172100;
+      background: linear-gradient(135deg, var(--solar), var(--solar-soft));
+      border-color: transparent;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fade .35s ease;
+    }
+
+    .tab-panel.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 1rem;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+    }
+
+    label {
+      display: block;
+      font-size: .9rem;
+      color: #ddf0d4;
+      margin-bottom: .45rem;
+      font-weight: 600;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: .95rem 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      outline: none;
+      font: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(255, 204, 63, .65);
+      box-shadow: 0 0 0 4px rgba(255, 204, 63, .11);
+    }
+
+    .helper {
+      margin-top: .45rem;
+      color: #a8c6af;
+      font-size: .86rem;
+      line-height: 1.55;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .8rem;
+      margin-top: .6rem;
+    }
+
+    .result {
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .result small {
+      color: #cfe3c1;
+      display: block;
+      margin-bottom: .35rem;
+    }
+
+    .result strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: .25rem;
+    }
+
+    .bar-chart {
+      margin-top: 1rem;
+      display: grid;
+      gap: .8rem;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 78px;
+      gap: .8rem;
+      align-items: center;
+      font-size: .92rem;
+    }
+
+    .bar-track {
+      position: relative;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      width: 0;
+      transition: width .7s ease;
+    }
+
+    .highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .65rem .85rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      margin-top: 1rem;
+      color: #dff2d9;
+    }
+
+    .chips {
+      display: flex;
+      gap: .55rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .chip {
+      padding: .7rem .9rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .chip.active {
+      background: linear-gradient(135deg, rgba(255, 204, 63, .18), rgba(76, 217, 123, .16));
+      color: var(--text);
+      border-color: rgba(255, 204, 63, .3);
+    }
+
+    .impact-box {
+      min-height: 100%;
+    }
+
+    .range-wrap {
+      margin: 1rem 0 1.2rem;
+    }
+
+    input[type="range"] {
+      padding: 0;
+      height: 8px;
+      appearance: none;
+      background: rgba(255,255,255,.08);
+      border-radius: 999px;
+      border: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--solar);
+      cursor: pointer;
+      box-shadow: 0 0 0 6px rgba(255,204,63,.16);
+    }
+
+    .expansion-path {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .expansion-path::before {
+      content: "";
+      position: absolute;
+      left: 23px;
+      top: 28px;
+      bottom: 28px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--solar), var(--green), var(--blue));
+      opacity: .7;
+    }
+
+    .phase {
+      position: relative;
+      padding-left: 4.2rem;
+    }
+
+    .phase::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      top: .1rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #172100;
+      background: linear-gradient(135deg, var(--solar), var(--solar-soft));
+      box-shadow: 0 10px 24px rgba(255,204,63,.25);
+    }
+
+    .phase h3 { margin-bottom: .35rem; }
+    .phase p { color: var(--muted); margin: 0; line-height: 1.7; }
+
+    .visual-card {
+      min-height: 420px;
+    }
+
+    .mini-map {
+      margin-top: 1rem;
+      height: 320px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 18% 50%, rgba(255,255,255,.07), transparent 18%),
+        radial-gradient(circle at 45% 35%, rgba(255,255,255,.05), transparent 16%),
+        radial-gradient(circle at 68% 62%, rgba(255,255,255,.06), transparent 14%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-node {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 10px rgba(76,217,123,.10);
+      animation: pulseNode 3s infinite;
+    }
+
+    @keyframes pulseNode {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    .node-medellin { left: 43%; top: 40%; }
+    .node-antioquia { left: 37%; top: 30%; background: var(--solar); box-shadow: 0 0 0 10px rgba(255,204,63,.10); }
+    .node-colombia { left: 55%; top: 22%; background: var(--blue); box-shadow: 0 0 0 10px rgba(87,199,255,.10); }
+
+    .node-label {
+      position: absolute;
+      transform: translate(20px, -8px);
+      background: rgba(7, 16, 20, .82);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: .55rem .75rem;
+      border-radius: 14px;
+      font-size: .9rem;
+      color: #e9f6eb;
+      min-width: max-content;
+    }
+
+    .fund-card {
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      min-height: 250px;
+    }
+
+    .fund-card h3 { margin-bottom: .7rem; }
+    .fund-card p { color: var(--muted); line-height: 1.7; }
+
+    .ranking table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: .9rem;
+      font-size: .95rem;
+    }
+
+    .ranking th,
+    .ranking td {
+      text-align: left;
+      padding: .85rem .7rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .ranking th { color: #ddf0d4; font-weight: 700; }
+    .ranking td { color: var(--muted); }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: .38rem .65rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+      background: rgba(255,255,255,.07);
+      color: #e7f8de;
+    }
+
+    .sort-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .sort-btn { padding: .75rem 1rem; font-size: .93rem; }
+
+    .contact form { display: grid; gap: .9rem; }
+
+    .note {
+      font-size: .88rem;
+      color: #a6c2b0;
+      line-height: 1.6;
+      margin-top: .8rem;
+    }
+
+    footer {
+      padding: 1.4rem 0 3rem;
+      color: #9fb5a8;
+      text-align: center;
+    }
+
+    .footer-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .8rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .toast {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      background: rgba(7, 18, 22, .92);
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: var(--shadow);
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all .35s ease;
+      z-index: 60;
+      max-width: 330px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1060px) {
+      .hero-grid,
+      .impact-grid,
+      .expansion-grid,
+      .calc-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-4,
+      .steps,
+      .fund-grid,
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-visual { min-height: 460px; }
+      .scene { max-width: 560px; }
+    }
+
+    @media (max-width: 720px) {
+      nav { padding: .6rem 0; align-items: flex-start; }
+      .nav-links { display: none; }
+      .hero { padding-top: 2rem; }
+      .hero-metrics,
+      .grid-4,
+      .steps,
+      .fund-grid,
+      .grid-3,
+      .result-grid,
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric { min-height: auto; }
+      .hero-visual { min-height: 400px; }
+      .orbit-chip { max-width: 180px; font-size: .9rem; }
+      .bar-row { grid-template-columns: 96px 1fr 70px; }
+      section { padding: 3.7rem 0; }
+      .scene { aspect-ratio: 1 / 1.05; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div>
+            <div>Colegios Solares</div>
+            <small style="color: var(--muted); font-weight: 500;">Medellín · Antioquia · Colombia</small>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#proyecto">Proyecto</a>
+          <a href="#metodologia">Metodología</a>
+          <a href="#calculadora">Calculadora</a>
+          <a href="#expansion">Escalabilidad</a>
+          <a href="#financiacion">Financiación</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+
+        <a href="#contacto" class="nav-cta">Impulsar iniciativa</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow"><span></span> Educación, cambio climático y energía solar</div>
+        <h1>Una ruta solar para transformar los colegios de Medellín.</h1>
+        <p>
+          <strong>Colegios Solares</strong> es una propuesta ambiental y educativa que nace frente a la problemática del cambio climático. Su propósito es medir la huella de carbono del sector educativo por consumo de energía eléctrica <strong>(alcance 2)</strong>, sensibilizar a las instituciones y promover la transición hacia sistemas solares fotovoltaicos con respaldo de un esquema de financiación privada.
+        </p>
+        <div class="hero-actions">
+          <a href="#calculadora">Explorar simulador</a>
+          <a href="#metodologia" class="ghost-btn">Ver metodología</a>
+        </div>
+
+        <div class="hero-metrics">
+          <article class="metric">
+            <small>Enfoque inicial</small>
+            <strong data-counter="100">0</strong>
+            <span>Instituciones públicas de Medellín como punto de partida.</span>
+          </article>
+          <article class="metric">
+            <small>Variable base</small>
+            <strong>kWh/mes</strong>
+            <span>Consumo mensual de energía para estimar CO₂e y huella.</span>
+          </article>
+          <article class="metric">
+            <small>Escalamiento</small>
+            <strong>3 fases</strong>
+            <span>Medellín, Antioquia y Colombia.</span>
+          </article>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="scene">
+          <div class="sun" aria-hidden="true"></div>
+          <div class="orbit-chip chip-1">
+            <strong>Medición inteligente</strong>
+            Registro mensual de consumo energético y CO₂e.
+          </div>
+          <div class="orbit-chip chip-2">
+            <strong>Conciencia climática</strong>
+            Datos convertidos en acciones pedagógicas reales.
+          </div>
+          <div class="orbit-chip chip-3">
+            <strong>Solución solar</strong>
+            Paneles fotovoltaicos + alternativa financiera.
+          </div>
+          <div class="school">
+            <div class="roof"></div>
+            <div class="window w1"></div>
+            <div class="window w2"></div>
+            <div class="door"></div>
+          </div>
+          <div class="panels" aria-hidden="true">
+            <div class="panel"></div>
+            <div class="panel"></div>
+            <div class="panel"></div>
+            <div class="panel"></div>
+            <div class="panel"></div>
+            <div class="panel"></div>
+          </div>
+          <div class="hill"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="proyecto">
+      <div class="container">
+        <div class="section-head">
+          <h2>¿Qué es Colegios Solares?</h2>
+          <p>
+            Es una propuesta de investigación, sensibilización y transformación energética que conecta el <strong>sector educativo</strong> con la acción climática. A partir de los datos de consumo eléctrico de los colegios, la iniciativa estima emisiones de dióxido de carbono equivalente, proyecta necesidades de compensación arbórea y propone soluciones con energía solar fotovoltaica para reducir el impacto ambiental.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card reveal">
+            <div class="icon">🌍</div>
+            <h3>Problema real</h3>
+            <p>El cambio climático exige actuar también desde la escuela. La energía eléctrica consumida por las instituciones genera emisiones indirectas que pueden ser medidas y gestionadas.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">🏫</div>
+            <h3>Sector educativo</h3>
+            <p>El proyecto inicia en Medellín, priorizando instituciones públicas, para construir una línea base territorial con potencial de escalabilidad regional y nacional.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">📊</div>
+            <h3>Alcance 2</h3>
+            <p>La investigación se enfoca en el consumo de electricidad. Cada mes se registra el kWh consumido y se transforma en indicadores comprensibles para la toma de decisiones.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">☀️</div>
+            <h3>Solución aplicada</h3>
+            <p>La meta no es solo medir: es impulsar la instalación de sistemas solares fotovoltaicos y acompañar su viabilidad financiera mediante inversión privada.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodologia">
+      <div class="container">
+        <div class="section-head">
+          <h2>Metodología de trabajo</h2>
+          <p>
+            La página traduce la investigación en un recorrido pedagógico, visual y técnico. Cada etapa conecta datos, conciencia y acción climática para que los colegios comprendan su situación actual y visualicen una ruta de transición energética.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="stat-card reveal">
+            <div class="step-number">1</div>
+            <h3>Levantamiento mensual</h3>
+            <p>Se recopila el consumo de energía eléctrica por institución, medido en kilovatios hora por mes.</p>
+          </article>
+          <article class="stat-card reveal">
+            <div class="step-number">2</div>
+            <h3>Cálculo de CO₂e</h3>
+            <p>Los kWh se convierten en dióxido de carbono equivalente según el factor metodológico adoptado por la investigación.</p>
+          </article>
+          <article class="stat-card reveal">
+            <div class="step-number">3</div>
+            <h3>Lectura educativa</h3>
+            <p>La huella se traduce en mensajes claros: árboles requeridos, oportunidad de mitigación y potencial solar.</p>
+          </article>
+          <article class="stat-card reveal">
+            <div class="step-number">4</div>
+            <h3>Plan de intervención</h3>
+            <p>Se propone una solución fotovoltaica y una ruta financiera para hacer viable la implementación.</p>
+          </article>
+        </div>
+
+        <div style="margin-top: 2rem;" class="impact-grid">
+          <div class="impact-box reveal">
+            <div class="tabs" role="tablist" aria-label="Pestañas de contenido">
+              <button class="tab active" data-tab="problema" role="tab" aria-selected="true">Problema</button>
+              <button class="tab" data-tab="medicion" role="tab" aria-selected="false">Medición</button>
+              <button class="tab" data-tab="sensibilizacion" role="tab" aria-selected="false">Sensibilización</button>
+              <button class="tab" data-tab="solucion" role="tab" aria-selected="false">Solución</button>
+            </div>
+
+            <div class="tab-panel active" id="tab-problema">
+              <h3>La escuela como actor climático</h3>
+              <p>Las instituciones educativas no solo enseñan sostenibilidad: también pueden demostrarla con evidencia. Medir el impacto del consumo eléctrico permite ubicar la conversación climática en la vida cotidiana escolar.</p>
+              <div class="highlight">💡 Cada factura de energía puede convertirse en un insumo pedagógico y ambiental.</div>
+            </div>
+            <div class="tab-panel" id="tab-medicion">
+              <h3>Datos que se vuelven decisiones</h3>
+              <p>El corazón de la propuesta es la trazabilidad. Con registros mensuales, el proyecto compara consumos, estima emisiones y ayuda a priorizar instituciones con mayor oportunidad de intervención.</p>
+              <div class="highlight">📈 La medición convierte percepciones en indicadores verificables.</div>
+            </div>
+            <div class="tab-panel" id="tab-sensibilizacion">
+              <h3>Aprender a partir del impacto</h3>
+              <p>Cuando una comunidad entiende cuántas emisiones genera y qué acciones pueden reducirlas, la sostenibilidad deja de ser abstracta. La conciencia nace cuando los datos se comprenden.</p>
+              <div class="highlight">🌱 El dato técnico se transforma en narrativa educativa.</div>
+            </div>
+            <div class="tab-panel" id="tab-solucion">
+              <h3>Energía solar con viabilidad financiera</h3>
+              <p>El proyecto propone que la transición energética escolar avance mediante sistemas solares fotovoltaicos y mecanismos de financiación que faciliten su adopción sin frenar su ejecución.</p>
+              <div class="highlight">☀️ Medir, priorizar, financiar e instalar: una sola cadena de valor.</div>
+            </div>
+          </div>
+
+          <aside class="visual-card reveal">
+            <h3>Indicadores que puede mostrar la plataforma</h3>
+            <p>La interfaz puede crecer para incluir tableros, comparativos por comuna, ranking institucional, reportes mensuales y módulos de conciencia ambiental con lenguaje claro para docentes, directivos y estudiantes.</p>
+            <div class="chips" id="indicatorChips">
+              <button class="chip active">CO₂e mensual</button>
+              <button class="chip">Árboles equivalentes</button>
+              <button class="chip">Potencial solar</button>
+              <button class="chip">Ahorro proyectado</button>
+            </div>
+            <div class="bar-chart" id="indicatorBars">
+              <div class="bar-row">
+                <span>Ene</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 72%"></div></div>
+                <strong>72%</strong>
+              </div>
+              <div class="bar-row">
+                <span>Feb</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 58%"></div></div>
+                <strong>58%</strong>
+              </div>
+              <div class="bar-row">
+                <span>Mar</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 81%"></div></div>
+                <strong>81%</strong>
+              </div>
+              <div class="bar-row">
+                <span>Abr</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 67%"></div></div>
+                <strong>67%</strong>
+              </div>
+            </div>
+            <p class="note">Los valores del gráfico son demostrativos para efectos de diseño y pueden conectarse luego a datos reales de la investigación.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculadora">
+      <div class="container">
+        <div class="section-head">
+          <h2>Calculadora interactiva de huella de carbono</h2>
+          <p>
+            Esta sección permite visualizar cómo un colegio puede transformar su consumo energético en una lectura ambiental clara. Los factores son <strong>editables</strong> para adaptarlos a la metodología oficial que defina tu investigación.
+          </p>
+        </div>
+
+        <div class="calc-layout">
+          <article class="calc-card reveal">
+            <h3>Simular institución</h3>
+            <div class="field-grid">
+              <div>
+                <label for="schoolName">Nombre de la institución</label>
+                <input id="schoolName" type="text" value="I.E. Modelo de Medellín" />
+              </div>
+              <div>
+                <label for="monthlyKwh">Consumo mensual (kWh)</label>
+                <input id="monthlyKwh" type="number" min="0" value="6800" />
+              </div>
+              <div>
+                <label for="emissionFactor">Factor de emisión (kg CO₂e / kWh)</label>
+                <input id="emissionFactor" type="number" min="0" step="0.001" value="0.200" />
+                <div class="helper">Valor demostrativo editable. Sustitúyelo por el factor metodológico de tu estudio.</div>
+              </div>
+              <div>
+                <label for="treeFactor">Captura anual por árbol (kg CO₂e)</label>
+                <input id="treeFactor" type="number" min="1" step="1" value="22" />
+                <div class="helper">También es editable para ajustarlo al criterio técnico que adoptes.</div>
+              </div>
+              <div>
+                <label for="solarCoverage">Cobertura solar estimada (%)</label>
+                <input id="solarCoverage" type="number" min="0" max="100" value="65" />
+              </div>
+              <div>
+                <label for="months">Meses proyectados</label>
+                <select id="months">
+                  <option value="12" selected>12 meses</option>
+                  <option value="6">6 meses</option>
+                  <option value="3">3 meses</option>
+                  <option value="1">1 mes</option>
+                </select>
+              </div>
+            </div>
+          </article>
+
+          <article class="calc-card reveal">
+            <h3>Resultados automáticos</h3>
+            <div class="result-grid">
+              <div class="result">
+                <small>CO₂e mensual</small>
+                <strong id="co2Monthly">0 kg</strong>
+                <span id="schoolPreview">Institución simulada</span>
+              </div>
+              <div class="result">
+                <small>CO₂e proyectado</small>
+                <strong id="co2Period">0 t</strong>
+                <span id="periodPreview">Periodo seleccionado</span>
+              </div>
+              <div class="result">
+                <small>Árboles equivalentes</small>
+                <strong id="treesNeeded">0</strong>
+                <span>Compensación referencial</span>
+              </div>
+              <div class="result">
+                <small>Reducción potencial solar</small>
+                <strong id="solarReduction">0%</strong>
+                <span>Sobre la huella del periodo</span>
+              </div>
+            </div>
+
+            <div class="highlight" id="impactMessage">🌿 Una institución con esta huella puede visualizar mejor su urgencia de transición energética.</div>
+
+            <div class="bar-chart" id="projectionBars" aria-live="polite"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="expansion">
+      <div class="container">
+        <div class="section-head">
+          <h2>Escalabilidad territorial</h2>
+          <p>
+            La iniciativa comienza en Medellín, se fortalece en Antioquia y luego se proyecta hacia Colombia. La expansión no es solo geográfica: también es metodológica, pedagógica y tecnológica.
+          </p>
+        </div>
+
+        <div class="expansion-grid">
+          <article class="impact-box reveal">
+            <h3>Ruta de implementación</h3>
+            <div class="expansion-path">
+              <div class="phase" data-step="1">
+                <h3>Medellín</h3>
+                <p>Línea base inicial con instituciones públicas, priorización de consumos y sensibilización del ecosistema educativo local.</p>
+              </div>
+              <div class="phase" data-step="2">
+                <h3>Antioquia</h3>
+                <p>Escalamiento regional para comparar territorios, identificar patrones y consolidar un modelo replicable de transición energética escolar.</p>
+              </div>
+              <div class="phase" data-step="3">
+                <h3>Colombia</h3>
+                <p>Proyección nacional para aportar evidencia desde el sector educativo a la conversación sobre descarbonización y sostenibilidad.</p>
+              </div>
+            </div>
+
+            <div class="range-wrap">
+              <label for="reachRange">Nivel de despliegue institucional</label>
+              <input id="reachRange" type="range" min="10" max="300" value="80" />
+            </div>
+            <p id="reachText">Con 80 instituciones vinculadas, la plataforma puede convertirse en un observatorio educativo de consumo energético con alto poder pedagógico y territorial.</p>
+          </article>
+
+          <article class="visual-card reveal">
+            <h3>Visual de expansión</h3>
+            <p>Este bloque representa cómo la narrativa del proyecto puede mostrar crecimiento progresivo, puntos de acción y cobertura climática del sector educativo.</p>
+            <div class="mini-map">
+              <div class="map-node node-medellin"><div class="node-label">Medellín · piloto inicial</div></div>
+              <div class="map-node node-antioquia"><div class="node-label">Antioquia · expansión regional</div></div>
+              <div class="map-node node-colombia"><div class="node-label">Colombia · proyección nacional</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="financiacion">
+      <div class="container">
+        <div class="section-head">
+          <h2>Financiación con impacto</h2>
+          <p>
+            El valor agregado de la propuesta es conectar sostenibilidad y viabilidad económica. La transición solar puede activarse a través de un fondo privado de inversión que facilite la implementación de sistemas fotovoltaicos en instituciones educativas priorizadas.
+          </p>
+        </div>
+
+        <div class="fund-grid">
+          <article class="fund-card reveal">
+            <h3>1. Diagnóstico</h3>
+            <p>Se identifican instituciones con mayor huella de carbono o mayor oportunidad de mitigación a partir de los datos energéticos recopilados.</p>
+          </article>
+          <article class="fund-card reveal">
+            <h3>2. Estructuración</h3>
+            <p>Se estima una solución solar acorde con el consumo, la infraestructura disponible y la meta ambiental que se busca alcanzar.</p>
+          </article>
+          <article class="fund-card reveal">
+            <h3>3. Fondo de inversión</h3>
+            <p>El fondo funciona como un habilitador financiero para acelerar la adopción tecnológica y facilitar la ejecución del proyecto.</p>
+          </article>
+        </div>
+
+        <div style="margin-top:2rem" class="contact-grid">
+          <article class="ranking reveal">
+            <div class="sort-row">
+              <div>
+                <h3>Ranking demostrativo de instituciones</h3>
+                <p style="color: var(--muted); margin:0;">Ejemplo visual para mostrar priorización. Los datos son ilustrativos.</p>
+              </div>
+              <button class="sort-btn" id="sortTable">Ordenar por CO₂e</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Institución</th>
+                  <th>kWh/mes</th>
+                  <th>CO₂e</th>
+                  <th>Prioridad</th>
+                </tr>
+              </thead>
+              <tbody id="rankingBody"></tbody>
+            </table>
+          </article>
+
+          <article class="contact reveal">
+            <h3>Alineación climática</h3>
+            <p>
+              La propuesta puede comunicarse como una contribución territorial desde la educación a las metas climáticas de Colombia: reducción de emisiones hacia 2030 y carbono neutralidad a largo plazo. La transición energética escolar convierte la gestión ambiental en una experiencia concreta, medible y formativa.
+            </p>
+            <div class="chips" style="margin-top:1rem">
+              <span class="chip active" style="cursor:default">Educación</span>
+              <span class="chip active" style="cursor:default">Innovación</span>
+              <span class="chip active" style="cursor:default">Solar</span>
+              <span class="chip active" style="cursor:default">Impacto</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="section-head">
+          <h2>Convierte la propuesta en plataforma</h2>
+          <p>
+            Esta versión funciona como una landing page interactiva de presentación. En una siguiente fase puede conectarse a bases de datos, paneles administrativos, registro de instituciones, reportes PDF y visualización histórica por colegio.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact reveal">
+            <h3>Posibles módulos futuros</h3>
+            <div class="grid-3" style="grid-template-columns: 1fr; margin-top:1rem;">
+              <div class="card" style="box-shadow:none;">
+                <h3>Panel institucional</h3>
+                <p>Consulta del consumo histórico, huella acumulada, potencial de reducción y alertas.</p>
+              </div>
+              <div class="card" style="box-shadow:none;">
+                <h3>Mapa educativo climático</h3>
+                <p>Visualización por comunas, municipios y departamentos con filtros por tipo de institución.</p>
+              </div>
+              <div class="card" style="box-shadow:none;">
+                <h3>Gestión de proyectos solares</h3>
+                <p>Seguimiento al avance técnico, financiero y ambiental de cada implementación fotovoltaica.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="contact reveal">
+            <h3>Formulario de interés</h3>
+            <form id="interestForm">
+              <div>
+                <label for="name">Nombre</label>
+                <input id="name" type="text" placeholder="Tu nombre" required />
+              </div>
+              <div>
+                <label for="email">Correo electrónico</label>
+                <input id="email" type="email" placeholder="correo@ejemplo.com" required />
+              </div>
+              <div>
+                <label for="message">Mensaje</label>
+                <textarea id="message" rows="5" placeholder="Quiero conocer más sobre la iniciativa Colegios Solares"></textarea>
+              </div>
+              <button type="submit">Enviar intención</button>
+            </form>
+            <p class="note">Este formulario es demostrativo. Actualmente muestra una confirmación local en pantalla. En la siguiente fase puede conectarse a correo, CRM o base de datos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-pill">☀️ Colegios Solares · Educación que mide, conciencia que transforma.</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const counters = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.counter);
+        let start = 0;
+        const duration = 1300;
+        const startTime = performance.now();
+
+        const animate = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const value = Math.floor(progress * (target - start) + start);
+          el.textContent = value + '+';
+          if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.45 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.animate(
+            [
+              { opacity: 0, transform: 'translateY(18px)' },
+              { opacity: 1, transform: 'translateY(0)' }
+            ],
+            { duration: 650, easing: 'ease-out', fill: 'forwards' }
+          );
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealItems.forEach(item => {
+      item.style.opacity = '0';
+      revealObserver.observe(item);
+    });
+
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(panel => panel.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active');
+      });
+    });
+
+    const schoolName = document.getElementById('schoolName');
+    const monthlyKwh = document.getElementById('monthlyKwh');
+    const emissionFactor = document.getElementById('emissionFactor');
+    const treeFactor = document.getElementById('treeFactor');
+    const solarCoverage = document.getElementById('solarCoverage');
+    const months = document.getElementById('months');
+
+    const co2Monthly = document.getElementById('co2Monthly');
+    const co2Period = document.getElementById('co2Period');
+    const treesNeeded = document.getElementById('treesNeeded');
+    const solarReduction = document.getElementById('solarReduction');
+    const impactMessage = document.getElementById('impactMessage');
+    const schoolPreview = document.getElementById('schoolPreview');
+    const periodPreview = document.getElementById('periodPreview');
+    const projectionBars = document.getElementById('projectionBars');
+
+    function formatNumber(value, decimals = 0) {
+      return new Intl.NumberFormat('es-CO', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }).format(value);
+    }
+
+    function updateCalculator() {
+      const kwh = Math.max(Number(monthlyKwh.value) || 0, 0);
+      const factor = Math.max(Number(emissionFactor.value) || 0, 0);
+      const tree = Math.max(Number(treeFactor.value) || 1, 1);
+      const solar = Math.min(Math.max(Number(solarCoverage.value) || 0, 0), 100);
+      const periodMonths = Number(months.value);
+
+      const monthlyKg = kwh * factor;
+      const periodKg = monthlyKg * periodMonths;
+      const periodTons = periodKg / 1000;
+      const trees = Math.ceil(periodKg / tree);
+      const reductionKg = periodKg * (solar / 100);
+
+      co2Monthly.textContent = `${formatNumber(monthlyKg, 1)} kg`;
+      co2Period.textContent = `${formatNumber(periodTons, 2)} t`;
+      treesNeeded.textContent = formatNumber(trees);
+      solarReduction.textContent = `${formatNumber(solar, 0)}%`;
+      schoolPreview.textContent = schoolName.value.trim() || 'Institución simulada';
+      periodPreview.textContent = `${periodMonths} mes${periodMonths > 1 ? 'es' : ''} proyectados`;
+
+      let message = '🌿 La simulación muestra una oportunidad clara para convertir el consumo eléctrico en una ruta de mitigación.';
+      if (periodTons >= 10) {
+        message = '⚡ Esta huella proyectada sugiere alta prioridad para un plan de transición energética y gestión solar.';
+      } else if (periodTons >= 3) {
+        message = '🌱 La institución presenta una huella intermedia que puede reducirse con estrategia, eficiencia y energía solar.';
+      }
+      impactMessage.textContent = message;
+
+      const views = [
+        { label: 'Huella del periodo', value: periodKg },
+        { label: 'Reducción solar', value: reductionKg },
+        { label: 'Compensación arbórea', value: trees * tree }
+      ];
+
+      const maxValue = Math.max(...views.map(v => v.value), 1);
+      projectionBars.innerHTML = views.map(item => {
+        const width = Math.max((item.value / maxValue) * 100, 6);
+        return `
+          <div class="bar-row">
+            <span>${item.label}</span>
+            <div class="bar-track"><div class="bar-fill" style="width:${width}%"></div></div>
+            <strong>${formatNumber(item.value, 0)}</strong>
+          </div>
+        `;
+      }).join('');
+    }
+
+    [schoolName, monthlyKwh, emissionFactor, treeFactor, solarCoverage, months].forEach(input => {
+      input.addEventListener('input', updateCalculator);
+      input.addEventListener('change', updateCalculator);
+    });
+    updateCalculator();
+
+    const reachRange = document.getElementById('reachRange');
+    const reachText = document.getElementById('reachText');
+    reachRange.addEventListener('input', () => {
+      const value = Number(reachRange.value);
+      let message = `Con ${value} instituciones vinculadas, la plataforma puede convertirse en un observatorio educativo de consumo energético con alto poder pedagógico y territorial.`;
+      if (value >= 180) {
+        message = `Con ${value} instituciones, la iniciativa ya opera como una red sólida de monitoreo climático escolar con alto potencial regional.`;
+      }
+      if (value >= 260) {
+        message = `Con ${value} instituciones, Colegios Solares adquiere escala nacional y capacidad para influir en política educativa y energética.`;
+      }
+      reachText.textContent = message;
+    });
+
+    const rankingData = [
+      { school: 'I.E. A', kwh: 9200, co2: 1840, priority: 'Alta' },
+      { school: 'I.E. B', kwh: 6500, co2: 1300, priority: 'Media' },
+      { school: 'I.E. C', kwh: 11100, co2: 2220, priority: 'Alta' },
+      { school: 'I.E. D', kwh: 4200, co2: 840, priority: 'Moderada' }
+    ];
+
+    let sortDesc = true;
+    const rankingBody = document.getElementById('rankingBody');
+    const sortTable = document.getElementById('sortTable');
+
+    function renderTable() {
+      const ordered = [...rankingData].sort((a, b) => sortDesc ? b.co2 - a.co2 : a.co2 - b.co2);
+      rankingBody.innerHTML = ordered.map(item => `
+        <tr>
+          <td>${item.school}</td>
+          <td>${formatNumber(item.kwh)}</td>
+          <td>${formatNumber(item.co2)} kg</td>
+          <td><span class="badge">${item.priority}</span></td>
+        </tr>
+      `).join('');
+      sortTable.textContent = sortDesc ? 'Ordenar ascendente' : 'Ordenar por CO₂e';
+    }
+
+    sortTable.addEventListener('click', () => {
+      sortDesc = !sortDesc;
+      renderTable();
+    });
+    renderTable();
+
+    const chips = document.querySelectorAll('#indicatorChips .chip');
+    const indicatorBars = document.getElementById('indicatorBars');
+    const indicatorPresets = {
+      'CO₂e mensual': [72, 58, 81, 67],
+      'Árboles equivalentes': [35, 42, 50, 46],
+      'Potencial solar': [60, 73, 78, 85],
+      'Ahorro proyectado': [30, 44, 57, 63]
+    };
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const values = indicatorPresets[chip.textContent.trim()];
+        indicatorBars.innerHTML = ['Ene', 'Feb', 'Mar', 'Abr'].map((month, index) => `
+          <div class="bar-row">
+            <span>${month}</span>
+            <div class="bar-track"><div class="bar-fill" style="width:${values[index]}%"></div></div>
+            <strong>${values[index]}%</strong>
+          </div>
+        `).join('');
+      });
+    });
+
+    const sections = document.querySelectorAll('main section, header.hero');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { threshold: 0.45 });
+
+    sections.forEach(section => {
+      if (section.id) navObserver.observe(section);
+    });
+
+    const form = document.getElementById('interestForm');
+    const toast = document.getElementById('toast');
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timeout);
+      showToast.timeout = setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      showToast(`Gracias, ${name || 'visitante'}. Tu interés en Colegios Solares ha sido registrado de forma demostrativa.`);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
