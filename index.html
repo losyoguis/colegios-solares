@@ -306,6 +306,7 @@
       border: 1px solid rgba(255,255,255,.08);
       overflow: hidden;
       box-shadow: var(--shadow);
+      isolation: isolate;
     }
 
     .sun {
@@ -318,6 +319,15 @@
       background: radial-gradient(circle at 35% 35%, #fff2ab, #ffd456 55%, #ffb100 100%);
       box-shadow: 0 0 42px rgba(255, 212, 86, .48);
       animation: sunPulse 4.5s ease-in-out infinite;
+    }
+
+    .sun::before {
+      content: "";
+      position: absolute;
+      inset: -24%;
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 219, 132, .35);
+      animation: spin 14s linear infinite;
     }
 
     @keyframes sunPulse {
@@ -333,6 +343,7 @@
       height: 32%;
       background: linear-gradient(180deg, #1c7441, #0b3d22);
       border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      animation: hillDrift 8s ease-in-out infinite;
     }
 
     .school {
@@ -344,6 +355,8 @@
       background: linear-gradient(180deg, #f4f0df, #d7d1ba);
       border-radius: 16px 16px 10px 10px;
       box-shadow: 0 14px 28px rgba(0,0,0,.18);
+      transform-origin: 50% 100%;
+      animation: schoolFloat 7.5s ease-in-out infinite;
     }
 
     .roof {
@@ -389,6 +402,8 @@
       grid-template-columns: repeat(3, 1fr);
       gap: .45rem;
       transform: skew(-18deg);
+      transform-origin: 50% 100%;
+      animation: panelRackFloat 5.6s ease-in-out infinite;
     }
 
     .panel {
@@ -423,6 +438,7 @@
       box-shadow: var(--shadow);
       max-width: 220px;
       backdrop-filter: blur(10px);
+      animation: chipFloat 6s ease-in-out infinite;
     }
 
     .orbit-chip strong {
@@ -432,8 +448,40 @@
     }
 
     .chip-1 { top: 8%; left: 5%; }
-    .chip-2 { bottom: 10%; left: 5%; }
-    .chip-3 { top: 44%; right: 3%; }
+    .chip-2 { bottom: 10%; left: 5%; animation-delay: 1.3s; }
+    .chip-3 { top: 44%; right: 3%; animation-delay: 2.1s; }
+
+    @keyframes chipFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes schoolFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(-0.35deg); }
+    }
+
+    @keyframes panelRackFloat {
+      0%, 100% { transform: skew(-18deg) translateY(0px); }
+      50% { transform: skew(-18deg) translateY(-6px); }
+    }
+
+    @keyframes hillDrift {
+      0%, 100% { transform: translateX(0px); }
+      50% { transform: translateX(12px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sun,
+      .sun::before,
+      .hill,
+      .school,
+      .panels,
+      .panel,
+      .orbit-chip {
+        animation: none !important;
+      }
+    }
 
     section { padding: 4.5rem 0; position: relative; }
     .section-head { max-width: 760px; margin-bottom: 2rem; }
